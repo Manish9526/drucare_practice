@@ -6,6 +6,7 @@ import com.EmployeeDeatil.empBean.DeptBean;
 import com.EmployeeDeatil.empBean.DesignationBean;
 import com.EmployeeDeatil.empBean.EmployeeDeatilBean;
 import com.EmployeeDeatil.empBean.FetchEmployeeNameByEmpIdRes;
+import com.EmployeeDeatil.empBean.InsertAndupdateEmpList;
 import com.EmployeeDeatil.empBean.FetchEmpName;
 
 public interface EmployeeService {
@@ -33,5 +34,7 @@ public interface EmployeeService {
 	Boolean updateDeptarment(DeptBean updateEmpDept);
 
 	Boolean updateDesignation(DesignationBean updateEmpdesigantion);
+
+	Boolean insertAndUpdadteUsingBatchUpdate(List<InsertAndupdateEmpList> insertAndUpdateEmpDetail);
 
 }
