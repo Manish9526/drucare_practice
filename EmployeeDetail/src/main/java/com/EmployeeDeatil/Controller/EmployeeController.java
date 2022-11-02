@@ -3,6 +3,7 @@ package com.EmployeeDeatil.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,6 +15,7 @@ import com.EmployeeDeatil.empBean.DesignationBean;
 import com.EmployeeDeatil.empBean.EmployeeDeatilBean;
 import com.EmployeeDeatil.empBean.FetchEmpName;
 import com.EmployeeDeatil.empBean.FetchEmployeeNameByEmpIdRes;
+import com.EmployeeDeatil.empBean.InsertAndupdateEmpList;
 
 @RestController
 public class EmployeeController {
@@ -113,6 +115,11 @@ public class EmployeeController {
 	@RequestMapping(value = "/insertAndUpdate", method = RequestMethod.POST)
 	public Boolean insertOrUpdateEmpDetail(@RequestBody List<EmployeeDeatilBean> insertEmployeeDetail) {
 		return service.insertOrUpdateEmpDetail(insertEmployeeDetail);
+	}
+	
+	@PostMapping("/insertAndupdateBatchUpdate")
+	public Boolean  insertAndUpdadteUsingBatchUpdate(@RequestBody List<InsertAndupdateEmpList> insertAndUpdateEmpDetail) {
+		return service.insertAndUpdadteUsingBatchUpdate(insertAndUpdateEmpDetail);
 	}
 }
 
