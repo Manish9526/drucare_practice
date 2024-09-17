@@ -8,6 +8,7 @@ import com.EmployeeDeatil.empBean.EmployeeDeatilBean;
 import com.EmployeeDeatil.empBean.EmployeeDeptXref;
 import com.EmployeeDeatil.empBean.EmployeeDesignationXRef;
 import com.EmployeeDeatil.empBean.FetchEmployeeNameByEmpIdRes;
+import com.EmployeeDeatil.empBean.InsertAndupdateEmpList;
 import com.EmployeeDeatil.empBean.FetchEmpName;
 
 public interface EmployeeDao {
@@ -56,6 +57,9 @@ public interface EmployeeDao {
 
 	Boolean updateDesignationRef(EmployeeDesignationXRef employeeDesignationXRefObj);
 
+	boolean insertAndUpdadteUsingBatchUpdate(InsertAndupdateEmpList empObj);
+
+	
 
 
 }

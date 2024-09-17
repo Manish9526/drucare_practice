@@ -16,6 +16,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.springframework.jdbc.core.namedparam.SqlParameterSourceUtils;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
@@ -27,6 +29,7 @@ import com.EmployeeDeatil.empBean.EmployeeDeptXref;
 import com.EmployeeDeatil.empBean.EmployeeDesignationXRef;
 import com.EmployeeDeatil.empBean.FetchEmpName;
 import com.EmployeeDeatil.empBean.FetchEmployeeNameByEmpIdRes;
+import com.EmployeeDeatil.empBean.InsertAndupdateEmpList;
 
 @Repository
 public class EmployeeDaoImpl implements EmployeeDao {
@@ -602,4 +605,19 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		return flag;
 	}
 
+	@Override
+	public boolean insertAndUpdadteUsingBatchUpdate(InsertAndupdateEmpList empObj) {
+		boolean falg=false; 
+		String queryForInsertEmployeeDetail = "insert into employee_detail_ref(first_nm,middle_nm,last_nm,emp_email,phone_no,mobile_no,address,address_line1,city_nm,district_nm,country_nm,pin_code,salary,experience,qualification,org_id)"
+				+ " values(:firstNm,:middleNm,:lastNm,:empEmail,:phoneNo,:mobileNo,:address,:addressLine1,:cityNm,:districtNm,:countryNm,:pinCode,:salary,:experience,:qualification,:orgId)";
+		
+		SqlParameterSource[] parameter = SqlParameterSourceUtils.createBatch(empObj.getEmpList().toArray());
+		falg= namedParameterJdbcTemplate.batchUpdate(queryForInsertEmployeeDetail, parameter).length>0;
+		return falg;
+
+	}
+
+	
+
+	
 }

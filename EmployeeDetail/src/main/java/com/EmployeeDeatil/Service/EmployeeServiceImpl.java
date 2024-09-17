@@ -13,6 +13,7 @@ import com.EmployeeDeatil.empBean.EmployeeDeptXref;
 import com.EmployeeDeatil.empBean.EmployeeDesignationXRef;
 import com.EmployeeDeatil.empBean.FetchEmpName;
 import com.EmployeeDeatil.empBean.FetchEmployeeNameByEmpIdRes;
+import com.EmployeeDeatil.empBean.InsertAndupdateEmpList;
 import com.EmployeeDeatil.employeeDao.EmployeeDao;
 
 @Service
@@ -154,6 +155,22 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Boolean updateDesignation(DesignationBean updateEmpdesigantion) {
 
 		return employeeDao.updateDesignation(updateEmpdesigantion);
+	}
+
+
+
+	@Override
+	public Boolean insertAndUpdadteUsingBatchUpdate(List<InsertAndupdateEmpList> insertAndUpdateEmpDetail) {
+		
+		boolean flag=false;
+		
+		for(InsertAndupdateEmpList empObj:insertAndUpdateEmpDetail)
+		{
+			if(CollectionUtils.isNotEmpty(empObj.getEmpList())) {
+				flag=employeeDao.insertAndUpdadteUsingBatchUpdate(empObj);
+			}
+		}
+			return flag;	
 	}
 
 	
